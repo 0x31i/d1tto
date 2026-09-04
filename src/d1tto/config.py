@@ -4,17 +4,27 @@ Stored as JSON in the OS-appropriate config dir:
   Windows: %APPDATA%\\d1tto\\config.json
   macOS:   ~/Library/Application Support/d1tto/config.json
   Linux:   ~/.config/d1tto/config.json
+
+Set D1TTO_CONFIG to a file path to use an isolated config instead (handy for
+running more than one vault, for CI, or for demos).
 """
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass, asdict, field
 from pathlib import Path
 
 from platformdirs import user_config_dir
 
-CONFIG_DIR = Path(user_config_dir("d1tto"))
-CONFIG_FILE = CONFIG_DIR / "config.json"
+
+def _config_file() -> Path:
+    override = os.environ.get("D1TTO_CONFIG")
+    return Path(override).expanduser() if override else Path(user_config_dir("d1tto")) / "config.json"
+
+
+CONFIG_FILE = _config_file()
+CONFIG_DIR = CONFIG_FILE.parent
 
 
 @dataclass

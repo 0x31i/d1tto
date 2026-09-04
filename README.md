@@ -24,6 +24,10 @@ whatever shape you need.
 
 The command is `d1tto` (not `ditto`, which macOS already uses for a file-copy utility).
 
+<p align="center">
+  <img src="assets/demo.gif" alt="d1tto receive-mode demo" width="820">
+</p>
+
 ## Auto-detects your Obsidian vault
 
 Obsidian keeps a registry of every vault you have opened. d1tto reads it, so `d1tto init` just lists
@@ -63,7 +67,8 @@ d1tto           # open the shell; it prompts for a client if none is active
 ```
 
 Config lives at `~/.config/d1tto/config.json` (Windows: `%APPDATA%\d1tto`, macOS:
-`~/Library/Application Support/d1tto`).
+`~/Library/Application Support/d1tto`). Set `D1TTO_CONFIG` to a file path to use an
+isolated config instead, handy for juggling more than one vault or for CI.
 
 ## Folder tree per engagement
 
