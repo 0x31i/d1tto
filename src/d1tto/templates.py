@@ -93,7 +93,7 @@ tags: [creds, sensitive]
 ---
 # Credentials: {client}
 
-> ⚠️ Sensitive. Scrub before sharing the vault.
+> Sensitive. Scrub before sharing the vault.
 
 | Captured | User | Secret | Host / Service | Context |
 |----------|------|--------|----------------|---------|

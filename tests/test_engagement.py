@@ -13,10 +13,10 @@ def test_full_flow(tmp_path: Path):
 
     p = e.save_image(Image.new("RGB", (10, 10)), "login page")
     assert p.suffix == ".png" and "login_page" in p.name
-    assert f"![[{p.name}]]" in (e.root / "05_Evidence/evidence.md").read_text()
+    assert f"![[{p.name}]]" in (e.root / "05_Evidence/evidence.md").read_text(encoding="utf-8")
 
     p = e.save_code("id\nuid=0(root)", "bash", "root shell")
-    assert p.read_text().startswith("id")
+    assert p.read_text(encoding="utf-8").startswith("id")
 
     nmap = "Nmap scan report for 10.0.0.5\nNmap scan report for web (10.0.0.9)\n"
     e.save_scan(nmap, "nmap", "top1000")
@@ -24,9 +24,9 @@ def test_full_flow(tmp_path: Path):
     assert (e.root / "03_Hosts/10.0.0.9.md").exists()
 
     f = e.finding("SQLi in login", "high")
-    assert f.name.startswith("F01_") and "severity: high" in f.read_text()
+    assert f.name.startswith("F01_") and "severity: high" in f.read_text(encoding="utf-8")
     e.cred("admin", "Winter2026!", "10.0.0.5", "sprayed")
-    assert "Winter2026!" in (e.root / "06_Creds/creds.md").read_text()
+    assert "Winter2026!" in (e.root / "06_Creds/creds.md").read_text(encoding="utf-8")
     assert list_engagements(engs)[0] == e.root
-    log = e.today_log.read_text()
+    log = e.today_log.read_text(encoding="utf-8")
     assert "Screenshot" in log and "Finding" in log

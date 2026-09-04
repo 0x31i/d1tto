@@ -32,10 +32,12 @@ from . import clipboard as clip
 con = Console()
 
 BANNER = r"""
-   __| | / | |_| |_ ___
-  / _` | | | | __| __/ _ \
- | (_| | | | | |_| || (_) |   v{v}
-  \__,_|_|_|\__|\__\___/
+     _ _ _   _        
+  __| / | |_| |_ ___  
+ / _` | | __| __/ _ \ 
+| (_| | | |_| || (_) |
+ \__,_|_|\__|\__\___/ 
+                      
    it copies anything into your obsidian vault.
 """
 
@@ -62,7 +64,7 @@ HELP = """[bold]receive mode[/]: type or paste, then end with a flag.
 # small helpers
 # ---------------------------------------------------------------------------
 def _prompt(eng) -> str:
-    return f"[bold #a78bfa]💜 {eng.client if eng else 'no-engagement'}[/] > "
+    return f"[bold #a78bfa]● {eng.client if eng else 'no-engagement'}[/] > "
 
 
 def _args(s: str) -> list[str]:
@@ -214,7 +216,7 @@ def _use(cfg, eng, arg):
 def _ls(cfg, eng):
     t = Table(title="Engagements"); t.add_column("#", style="dim"); t.add_column("Folder"); t.add_column("Active")
     for i, e in enumerate(list_engagements(cfg.engagements)):
-        t.add_row(str(i), e.name, "💜" if eng and e == eng.root else "")
+        t.add_row(str(i), e.name, "[#a78bfa]●[/]" if eng and e == eng.root else "")
     con.print(t)
 
 

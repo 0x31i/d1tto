@@ -27,14 +27,14 @@ def fake_clip(monkeypatch):
 
 def test_unflagged_line_is_a_note(eng, fake_clip):
     cli.receive("box .5 runs an old jenkins", eng)
-    assert "old jenkins" in (eng.root / "notes.md").read_text()
+    assert "old jenkins" in (eng.root / "notes.md").read_text(encoding="utf-8")
 
 
 def test_flagword_without_payload_stays_a_note(eng, fake_clip):
     # ends in "image" but nothing is on the clipboard -> keep the whole line
     fake_clip["image"] = None
     cli.receive("grab a screenshot of the login image", eng)
-    assert "login image" in (eng.root / "notes.md").read_text()
+    assert "login image" in (eng.root / "notes.md").read_text(encoding="utf-8")
 
 
 def test_image_flag_saves_clipboard_image_with_caption(eng, fake_clip):
@@ -59,7 +59,7 @@ def test_multiword_client_name_is_preserved(tmp_path):
     assert e.root.name.endswith("_Acme_Corp")
     assert e.client == "Acme Corp"
     assert e.dashboard.name == "Acme Corp.md"
-    assert 'client: "Acme Corp"' in e.dashboard.read_text()
+    assert 'client: "Acme Corp"' in e.dashboard.read_text(encoding="utf-8")
     # reloading recovers the original name, not the slug
     assert Engagement(e.root).client == "Acme Corp"
 

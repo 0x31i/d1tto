@@ -19,9 +19,9 @@ Show
 # --- the demo ---
 Type "d1tto" Enter
 Sleep 1.6s
-Type "Acme Corp" Enter
+Type "0x31i" Enter
 Sleep 900ms
-Type "10.0.0.0/24, portal.acme.com" Enter
+Type "10.0.0.0/24, portal.example.com" Enter
 Sleep 1.8s
 Type "box .5 runs jenkins 2.426 with no auth" Enter
 Sleep 1.4s
